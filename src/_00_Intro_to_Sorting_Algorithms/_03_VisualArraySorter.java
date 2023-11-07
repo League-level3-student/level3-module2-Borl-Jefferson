@@ -38,22 +38,44 @@ import processing.core.PApplet;
  *     mousePressed variable
  */
 public class _03_VisualArraySorter extends PApplet {
-    static final int WIDTH = 600;
-    static final int HEIGHT = 400;
-
+    static final int WIDTH = 750;
+    static final int HEIGHT = 500;
+    float[] arr;
     @Override
     public void settings() {
-        
+        size(WIDTH, HEIGHT);
     }
 
     @Override
     public void setup() {
-        
+        arr = new float[50];
+        for (int i = 0; i < arr.length; i++) {
+			arr[i]=(float)random(HEIGHT);
+		}
+        noStroke();
     }
 
     @Override
     public void draw() {
-        
+        background(60, 60, 60);
+        fill(190, 190, 190);
+        for (int i = 0; i < arr.length; i++) {
+			float x = i*(WIDTH/arr.length);
+			float y = HEIGHT;
+			float width = WIDTH/arr.length;
+			float height = -arr[i];
+			rect(x,y,width,height);
+		}
+        stepSort(arr);
+        if(mousePressed) {
+        	rand(arr);
+        }
+    }
+    
+    public void rand(float[] arr) {
+    	for (int i = 0; i < arr.length; i++) {
+			arr[i]=(int)random(HEIGHT);
+		}
     }
 
     static public void main(String[] passedArgs) {
@@ -64,10 +86,10 @@ public class _03_VisualArraySorter extends PApplet {
     
     int startIndex = 1;
 
-    void stepSort(int[] arr) {
+    void stepSort(float[] arr) {
       for (int i = startIndex; i < arr.length; i++) {
         if (arr[i - 1] > arr[i]) {
-          int t = arr[i];
+          float t = arr[i];
           arr[i] = arr[i - 1];
           arr[i - 1] = t;
 
