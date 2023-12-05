@@ -41,31 +41,34 @@ public class ThanosSorter extends Sorter {
 	 */
 	@Override
 	void sort(int[] array, SortingVisualizer display) {
+	for (int m = 0; m < m+1; m++) {
+		
 	
 		boolean sorted = false;
 		
 		boolean front;
 		Random r = new Random();
-		while (!sorted) {
+	
+		while (sorted==false) {
+			
 			int sr = 0;
 		int sl = 0;
 			try {
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			System.out.println(sorted);
+			
 			display.updateDisplay();
-			//sorted=false;
-			//if(isitsorted(array)) {
-			//	sorted=true;
-			//}
+			sorted=false;
+			
 			sl = 999799;
 			front = r.nextBoolean();
 
 			// getting sr/l
+
 			for (int j = 0; j < array.length; j++) {
 				if (array[j] != 0) {
 					sr = j;
@@ -76,37 +79,59 @@ public class ThanosSorter extends Sorter {
 			}
 
 			// removing half
-
-			if(front) {
-				for (int i = sl; i < sl+((sr-sl)/2)+2; i++) {
+if(isitsorted(array)) {
+				sorted=true;
+		System.out.println(sorted);
+}
+			if(front & sorted==false) {
+				for (int i = sl; i < sl+sr/2-sl/2+1; i++) {
 					array[i]=0;
-					System.out.println("i: " + i + " - sl: " + sl + " - sr: " + sr + " - Length: " + array.length);
+					
 					
 				}
 			}
-			if(!front) {
-				for (int i =sl+((sr-sl)/2)+2; i < sr; i++) {
-					
+			if(!front & sorted==false) {
+				
+				for (int i =sr; i > sl+sr/2-sl/2; i--) {
+			
 						array[i]=0;
-				System.out.println("i: " + i + " - sl: " + sl + " - sr: " + sr + array.length);
+				
 				}
 				
 			}
-			if(isitsorted(array)) {
-				sorted=true;
+			
 			}
+			if(sorted) {
+				break;
+			}
+			display.updateDisplay();
 		}
-	}
+		/*try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = 0; i < array.length; i++) {
+	            array[i] = r.nextInt(500);
+	        }*/
+		}
+	
 
+	
+	
+	
 	public boolean isitsorted(int[] array) {
 		boolean sorted = true;
-		for (int i = 0; i <= array.length - 2; i ++) {
-			if (array[i] > array[i + 1]) {
+		for (int i = 1; i <= array.length - 1; i ++) {
+			
+			if (array[i-1] > array[i] & array[i]!=0) {
 			sorted =false;
 				
 			}
 		}
-		System.out.println(sorted);
+		
+	//	System.out.println(sorted);
 		return sorted;
 	}
 }

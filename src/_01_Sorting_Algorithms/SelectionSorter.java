@@ -1,5 +1,7 @@
 package _01_Sorting_Algorithms;
 
+import java.util.Random;
+
 public class SelectionSorter extends Sorter {
     public SelectionSorter() {
         type = "Selection";
@@ -17,6 +19,9 @@ public class SelectionSorter extends Sorter {
      */
     @Override
     void sort(int[] array, SortingVisualizer display) {
+    	for (int m = 0; m < m+1; m++) {
+			Random r = new Random();
+		
         // 1. make a for loop to iterate through all but the last
         //    element of the array
         for( int i = 0; i < array.length - 1; i++ ) {
@@ -42,5 +47,23 @@ public class SelectionSorter extends Sorter {
             
             display.updateDisplay();
         }
+    
+    if(isitsorted(array)) {
+    	for(int i = 0; i < array.length; i++) {
+            array[i] = r.nextInt(500);
+        }
     }
+    	}
+}
+public boolean isitsorted(int[] array) {
+	boolean sorted = true;
+	for (int i = 1; i <= array.length - 1; i ++) {
+		if (array[i-1] > array[i] & array[i]!=0) {
+		sorted =false;
+			
+		}
+	}
+	return sorted;
+}
+
 }

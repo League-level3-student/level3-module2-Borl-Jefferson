@@ -1,5 +1,7 @@
 package _01_Sorting_Algorithms;
 
+import java.util.Random;
+
 public class InsertionSorter extends Sorter {
     public InsertionSorter() {
         type = "Insertion";
@@ -16,6 +18,10 @@ public class InsertionSorter extends Sorter {
     
     @Override
     void sort(int[] array, SortingVisualizer display) {
+    	for (int m = 0; m < m+1; m++) {
+			
+		
+    	Random r = new Random();
         // 1. make a for loop that starts at 1 and goes through 
         //  the length of the array 
         for( int i = 1; i < array.length; i++ ) {
@@ -35,5 +41,22 @@ public class InsertionSorter extends Sorter {
             
             display.updateDisplay();
         }
+        if(isitsorted(array)) {
+        	for(int i = 0; i < array.length; i++) {
+	            array[i] = r.nextInt(500);
+	        }
+        }
     }
+}
+    public boolean isitsorted(int[] array) {
+		boolean sorted = true;
+		for (int i = 1; i <= array.length - 1; i ++) {
+			if (array[i-1] > array[i] & array[i]!=0) {
+			sorted =false;
+				
+			}
+		}
+		return sorted;
+	}
+
 }
